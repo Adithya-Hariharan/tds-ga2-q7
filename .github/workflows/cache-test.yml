@@ -1,0 +1,20 @@
+name: CI Cache Prime
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cache_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: prime-cache-eec5f1c
+        id: cache_step
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: cache-eec5f1c
+
+      - name: echo cache result
+        run: echo "cache hit result: ${{ steps.cache_step.outputs.cache-hit }}"
